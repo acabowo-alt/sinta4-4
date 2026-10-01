@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Petualangan Balon Jurnal SINTA — Rasya Ananda Wibowo</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--a:#ff9a62;--b:#ffd98a;--sky:#7cc4f0;--ink:#3b2a4a;--card:#fffaf0;--pur:#8b5fbf;--teal:#27a99b;--pink:#f0617d;--blue:#3d8bd9;--gold:#e8a21c}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Quicksand,system-ui,sans-serif;color:var(--ink);background:linear-gradient(#5db4ea 0,#a9dcf5 38%,#ffe3b8 78%,#ffc58f);background-attachment:fixed;overflow-x:hidden}
+#sky{position:fixed;inset:0;z-index:0;overflow:hidden}
+.cl{position:absolute;background:#fff;border-radius:60px;opacity:.9;animation:cd linear infinite}
+.cl:before,.cl:after{content:"";position:absolute;background:#fff;border-radius:50%}
+.cl:before{width:50%;height:160%;left:14%;top:-70%}.cl:after{width:36%;height:130%;right:14%;top:-45%}
+@keyframes cd{from{transform:translateX(-30vw)}to{transform:translateX(130vw)}}
+.bl{position:absolute;bottom:-140px;width:44px;height:56px;border-radius:50% 50% 48% 48%;cursor:pointer;animation:rise linear infinite;box-shadow:inset -8px -8px 0 #0002,inset 7px 7px 0 #fff4;pointer-events:auto}
+.bl:after{content:"";position:absolute;left:50%;bottom:-48px;height:48px;border-left:2px solid #5b4a6a88}
+.bl.pop{animation:none;transform:scale(1.8);opacity:0;transition:.25s}
+@keyframes rise{from{transform:translate(0,0) rotate(-4deg)}50%{transform:translate(30px,-60vh) rotate(5deg)}to{transform:translate(-10px,-125vh) rotate(-3deg)}}
+main,header,footer{position:relative;z-index:1}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+.hero{padding:36px 0 18px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center}
+h1{font-family:"Baloo 2";font-weight:800;font-size:clamp(34px,6vw,62px);line-height:1;margin:0 0 12px;color:#fff;text-shadow:0 4px 0 var(--pink),0 8px 18px #0003}
+.hero p{font-size:18px;line-height:1.6;margin:0 0 14px;max-width:56ch;font-weight:700}
+.me{background:var(--card);border-radius:22px;padding:14px 18px;box-shadow:0 8px 0 #e9b36a,0 14px 24px #0002;font-size:15px;line-height:1.6;max-width:560px}
+.me b{color:var(--pink)}
+#house{width:100%;max-width:400px;justify-self:center;transition:transform .15s;animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{margin-top:-18px}}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0}
+.stat{background:var(--card);border-radius:999px;padding:8px 20px;font-weight:700;box-shadow:0 5px 0 #e9b36a}
+.stat span{font:800 26px "Baloo 2";color:var(--pink);margin-right:6px}
+.ctrl{background:var(--card);border-radius:24px;padding:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;position:sticky;top:8px;z-index:5;box-shadow:0 6px 0 #e9b36a,0 12px 20px #0002}
+.ctrl input{flex:1 1 220px;padding:12px 16px;border:3px solid #e9b36a;border-radius:999px;font:inherit;background:#fff}
+.chip{border:0;background:#fff;color:var(--ink);border-radius:999px;padding:8px 15px;font:700 14px Quicksand;cursor:pointer;box-shadow:0 3px 0 #e9b36a}
+.chip.on{background:var(--pink);color:#fff;box-shadow:0 3px 0 #b83a55}
+.chip:focus-visible,.card:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{outline:4px solid #1a5fd0;outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:26px;padding:30px 0 40px}
+.card{background:var(--card);border:0;border-radius:26px;padding:0;text-align:left;cursor:pointer;font:inherit;color:inherit;box-shadow:0 8px 0 #e9b36a,0 14px 22px #0002;transition:transform .25s cubic-bezier(.3,1.6,.5,1);overflow:hidden;display:flex;flex-direction:column;position:relative}
+.card:hover{transform:translateY(-8px) scale(1.02)}
+.card .top{padding:14px 16px 20px;color:#fff;font-weight:700;display:flex;justify-content:space-between;align-items:center;font-size:13px;border-radius:0 0 50% 50%/0 0 22px 22px}
+.badge{background:#fff;color:var(--ink);border-radius:999px;padding:2px 11px;font:800 14px "Baloo 2"}
+.card .bd{padding:6px 16px 16px;flex:1;display:flex;flex-direction:column;gap:8px}
+.card h3{margin:0;font:800 18px/1.25 "Baloo 2"}
+.card p{margin:0;font-size:14px;line-height:1.5}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+.tag{background:#fff0d6;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700}
+.empty{text-align:center;padding:40px;font-weight:700;font-size:18px;grid-column:1/-1}
+.about{background:var(--card);border-radius:26px;padding:22px;margin-bottom:40px;box-shadow:0 8px 0 #e9b36a;line-height:1.7}
+.about h2,.modal h2{font-family:"Baloo 2";margin:0 0 8px;color:var(--pink)}
+footer{background:#4a3560;color:#ffe9c8;text-align:center;padding:26px 18px;font-size:14px;line-height:1.8}
+footer a{color:var(--b)}
+.ov{position:fixed;inset:0;background:#2a1d3acc;z-index:20;display:none;align-items:center;justify-content:center;padding:14px}
+.ov.show{display:flex}
+.modal{background:var(--card);border-radius:28px;max-width:800px;width:100%;max-height:92vh;overflow:auto;box-shadow:0 10px 0 #e9b36a;animation:zoom .45s cubic-bezier(.3,1.5,.5,1)}
+@keyframes zoom{from{transform:translateY(60px) scale(.3);opacity:0}}
+.mh{padding:20px;color:#fff;position:relative;border-radius:0 0 40% 40%/0 0 26px 26px}
+.mh h2{color:#fff;font-size:clamp(20px,4vw,28px);margin:6px 44px 4px 0}
+.x{position:absolute;right:12px;top:12px;width:40px;height:40px;border-radius:50%;border:0;background:#fff;font:800 18px Quicksand;cursor:pointer;color:var(--ink)}
+.mb{padding:14px 20px 22px}
+.row{display:grid;grid-template-columns:160px 1fr;gap:4px 14px;padding:9px 0;border-bottom:2px dotted #e9b36a;line-height:1.55}
+.row dt{font-weight:700;color:var(--pur)}.row dd{margin:0}
+.note{background:#fff0d6;border-left:6px solid var(--gold);border-radius:12px;padding:10px 14px;margin-top:14px;line-height:1.55}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.btn{display:inline-block;text-decoration:none;background:var(--pink);color:#fff;border:0;border-radius:999px;padding:11px 20px;font:800 15px Quicksand;box-shadow:0 4px 0 #b83a55;cursor:pointer}
+.btn.g{background:var(--teal);box-shadow:0 4px 0 #1b7c71}.btn.w{background:#fff;color:var(--ink);box-shadow:0 4px 0 #e9b36a}
+@media(max-width:760px){.hero{grid-template-columns:1fr}#house{max-width:260px}.row{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="sky" aria-hidden="true"></div>
+
+<header class="wrap hero">
+ <div>
+  <h1>Petualangan Balon Jurnal SINTA</h1>
+  <p>Terbangkan rasa ingin tahumu! Jelajahi jurnal ilmiah terakreditasi SINTA, intip info sekilasnya, lalu ketuk kartu untuk melihat detail: ISSN, biaya, jadwal terbit, sampai tautan kirim naskah. Coba juga pecahkan balon di langit.</p>
+  <div class="me">Halo, saya <b>Rasya Ananda Wibowo</b>, siswa PKL dari <b>Al Muhtadin Depok</b>. Saat ini saya magang di bawah bimbingan <b>Pak Riadi Marta Dinata, S.Ti., M.Kom</b>, Kepala Lab Komputer FSTT ISTN. Data bersumber dari <a href="https://sinta.kemdiktisaintek.go.id/" target="_blank" rel="noopener">SINTA Kemdiktisaintek</a>.</div>
+ </div>
+ <svg id="house" viewBox="0 0 320 340" role="img" aria-label="Rumah yang diterbangkan banyak balon">
+  <g stroke="#5b4a6a" stroke-width="1.5" fill="none"><path d="M160 190 L70 70M160 190 L110 40M160 190 L160 30M160 190 L210 40M160 190 L250 70M160 190 L130 60M160 190 L190 60"/></g>
+  <g><ellipse cx="70" cy="52" rx="30" ry="36" fill="#f0617d"/><ellipse cx="110" cy="26" rx="30" ry="36" fill="#ffd23f"/><ellipse cx="160" cy="18" rx="30" ry="36" fill="#3d8bd9"/><ellipse cx="210" cy="26" rx="30" ry="36" fill="#27a99b"/><ellipse cx="250" cy="52" rx="30" ry="36" fill="#8b5fbf"/><ellipse cx="130" cy="58" rx="26" ry="32" fill="#ff9a62"/><ellipse cx="190" cy="58" rx="26" ry="32" fill="#7ed957"/></g>
+  <g fill="#fff" opacity=".55"><ellipse cx="60" cy="40" rx="6" ry="11"/><ellipse cx="101" cy="14" rx="6" ry="11"/><ellipse cx="151" cy="6" rx="6" ry="11"/><ellipse cx="201" cy="14" rx="6" ry="11"/><ellipse cx="241" cy="40" rx="6" ry="11"/></g>
+  <rect x="100" y="240" width="120" height="70" rx="6" fill="#ffd9a0"/>
+  <polygon points="88,244 160,186 232,244" fill="#c4553b"/>
+  <rect x="148" y="266" width="26" height="44" rx="13" fill="#8a4b25"/>
+  <rect x="112" y="256" width="24" height="24" rx="4" fill="#9fdcf7" stroke="#8a4b25" stroke-width="3"/><rect x="186" y="256" width="24" height="24" rx="4" fill="#9fdcf7" stroke="#8a4b25" stroke-width="3"/>
+  <rect x="190" y="196" width="16" height="30" fill="#a85f31"/>
+ </svg>
+</header>
+
+<main class="wrap">
+ <div class="stats" id="stats"></div>
+ <div class="ctrl">
+  <input id="q" type="search" placeholder="Cari nama jurnal, bidang, atau penerbit…" aria-label="Cari jurnal">
+  <div id="chips" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+ </div>
+ <section class="grid" id="grid" aria-live="polite"></section>
+ <section class="about">
+  <h2>Apa itu SINTA?</h2>
+  <p>SINTA (Science and Technology Index) adalah portal yang mengelola data kinerja riset di Indonesia, termasuk akreditasi jurnal ilmiah nasional. Peringkat jurnal terbagi dari SINTA 1 (tertinggi) sampai SINTA 6. Semua jurnal di halaman ini berperingkat SINTA 4, cocok untuk penulis yang ingin mulai menerbitkan karya ilmiah.</p>
+  <p><b>Tips memilih jurnal:</b> cocokkan scope dengan topik naskah, bandingkan biaya publikasi (APC), cek apakah jurnal masih aktif dan akreditasinya masih berlaku, lalu baca template dan pedoman penulis sebelum mengirim. Status Scopus pada daftar ini belum terverifikasi, jadi periksa langsung di sumber resminya.</p>
+ </section>
+</main>
+
+<footer>
+ Dibuat oleh Rasya Ananda Wibowo, siswa PKL Al Muhtadin Depok<br>
+ Pembimbing: Pak Riadi Marta Dinata, S.Ti., M.Kom, Kalab Komputer FSTT ISTN<br>
+ Sumber data: <a href="https://sinta.kemdiktisaintek.go.id/" target="_blank" rel="noopener">sinta.kemdiktisaintek.go.id</a> · Data diperbarui 30 September 2026<br>
+ Bergaya kartun petualangan balon; semua ilustrasi dibuat sendiri.
+</footer>
+
+<div class="ov" id="ov" role="dialog" aria-modal="true"><div class="modal" id="modal"></div></div>
+
+<script>
+const D=[
+{n:"GLOBAL ABDIMAS: Jurnal Pengabdian Masyarakat",c:"Pengabdian",u:"https://journal.intelekmadani.org/index.php/globalabdimas",e:"2776-3331",sc:"Pengabdian masyarakat bidang sosial, pendidikan, kesehatan, ekonomi, teknologi tepat guna, teknologi informasi, dan pengembangan SDM.",sn:"ID 11678, akreditasi Vol. 5 No. 1 (2025) s.d. Vol. 9 No. 2 (2029)",pub:"Unit Publikasi Ilmiah Perkumpulan Intelektual Madani Indonesia",fr:"2×/tahun (Mei, November)",apc:"Rp800.000; submission, review, dan editing gratis",bh:"Tidak dinyatakan eksplisit",ix:"SINTA, GARUDA, Google Scholar, Dimensions, Crossref, OpenAlex",doi:"10.51577/globalabdimas"},
+{n:"Biocaster: Jurnal Kajian Biologi",c:"Sains & Lingkungan",u:"https://e-journal.lp3kamandanu.com/index.php/biocaster",p:"2808-3598",e:"2808-277X",sc:"Biologi dan pendidikan biologi: pembelajaran, media, kurikulum, asesmen, isu profesional guru, pendidikan lingkungan.",sn:"ID 15015",pub:"LP3 Kamandanu",fr:"4×/tahun (Jan, Apr, Jul, Okt)",apc:"Rp800.000 + Rp100.000 biaya cetak untuk naskah diterima mulai 17 Agustus 2026",bh:"English / Indonesia",rv:"Reviewer diberi 2 minggu; minimal 2 reviewer, double-blind",ix:"SINTA, GARUDA, Google Scholar, Dimensions",doi:"10.36312/biocaster",ct:"Data bahasa tidak konsisten: Focus & Scope menyebut English, halaman Peer Review menyebut English atau Indonesia."},
+{n:"Jurnal SISKOM-KB (Sistem Komputer dan Kecerdasan Buatan)",c:"Informatika",u:"https://jurnal.tau.ac.id/index.php/siskom-kb",p:"2613-991X",e:"2621-2927",sc:"Ilmu komputer, informatika, sistem informasi, teknik elektro: jaringan, embedded, AI & machine learning, rekayasa perangkat lunak, pengolahan citra/sinyal.",sn:"ID 7117",pub:"LPPM Universitas Tanri Abeng",fr:"3×/tahun (Feb, Mei, Sep)",apc:"Rp500.000 (berlaku 2026, termasuk Turnitin)",bh:"Indonesia",dl:"CFP Vol. 10 No. 1 Oktober 2026; tanggal pasti tidak tercantum",ix:"SINTA, GARUDA, Google Scholar, Crossref, Mendeley",doi:"10.47970/siskom-kb",ct:"Waktu review 19 hari berasal dari CFP 2022, bukan standar saat ini."},
+{n:"Jurnal Teknologi dan Mutu Pangan (JTMP)",c:"Pertanian & Pangan",u:"https://journal.universitasbumigora.ac.id/index.php/jtmp",e:"2962-7826",sc:"Ilmu dan teknologi pangan: mikrobiologi, nutrisi, pengolahan, pengawetan, pengemasan, keamanan pangan, pascapanen, pangan fungsional, mutu.",sn:"ID 15131",pub:"Prodi Teknologi Pangan Universitas Bumigora",fr:"2×/tahun (Januari, Juli)",apc:"Rp400.000 untuk artikel diterima; tanpa biaya submission, review, penyuntingan",bh:"Indonesia dan Inggris (terlihat dari artikel)",ix:"SINTA, Google Scholar, Garuda",doi:"10.30812"},
+{n:"Protek: Jurnal Ilmiah Teknik Elektro",c:"Teknik",u:"https://ejournal.unkhair.ac.id/index.php/protk",p:"2354-8924",e:"2527-9572",sc:"Teknik elektro dan tenaga, smartgrid, elektronika daya, otomasi, pengolahan sinyal/citra, telekomunikasi, AI, IoT, big data & cloud.",sn:"ID 281",pub:"Teknik Elektro Universitas Khairun",fr:"3×/tahun (Jan, Mei, Sep)",apc:"Rp500.000 (penulis Indonesia); gratis untuk penulis internasional; diskon 50% jika kolaborasi internasional",bh:"Indonesia dan English",dl:"Rolling submission, tanpa deadline",ix:"DOAJ, SINTA, EBSCO, Google Scholar, Crossref, Dimensions, GARUDA, Index Copernicus, Semantic Scholar, WorldCat, dan lainnya",doi:"10.33387/protk"},
+{n:"Jurnal Engine: Energi, Manufaktur, dan Material",c:"Teknik",u:"https://ejournal.up45.ac.id/index.php/Jurnal_ENGINE",e:"2579-7433",sc:"Energi, manufaktur, material, teknik mesin, simulasi: energi terbarukan, pengelasan, pengecoran, komposit, mekatronika, CFD, FEM.",sn:"ID 5317",pub:"Teknik Mesin Universitas Proklamasi 45",fr:"2×/tahun (Mei, November)",apc:"Rp400.000 (domestik); USD 30 (luar Indonesia); ada opsi waiver",bh:"Indonesia atau English",rv:"Blind peer review",ix:"Google Scholar, GARUDA, Dimensions, Crossref, ORCID, Scilit, OneSearch",doi:"10.30588/jeemm"},
+{n:"Jurnal Teknik Indonesia (JTI)",c:"Teknik",u:"https://jti.publicascientificsolution.com/index.php/rp",p:"2964-8092",e:"2963-2293",sc:"Teknik sangat luas: informatika, arsitektur, elektro, sipil, mesin, industri, perminyakan, lingkungan, AI, robotika, energi, geodesi, material.",sn:"ID 16105",pub:"Publica Scientific Solution (Institusi: STAI Kuningan)",fr:"4×/tahun (bulan tidak dinyatakan)",apc:"Rp3.000.000, dibayar setelah diterima; tidak ada waiver",bh:"Indonesia (abstrak Inggris)",rv:"Sekitar 1–2 minggu, double-blind, 2 reviewer atau lebih",dl:"Permanent call for papers",ix:"SINTA, GARUDA, Google Scholar, Dimensions, Crossref",doi:"10.58860/jti",ct:"DOI tidak konsisten: halaman About menulis 10.57096, sedangkan GARUDA dan artikel memakai 10.58860/jti. APC tergolong sangat tinggi dibanding jurnal lain."},
+{n:"KRESNA: Jurnal Riset dan Pengabdian Masyarakat",c:"Pengabdian",u:"https://jurnaldrpm.budiluhur.ac.id/index.php/Kresna",e:"2809-6509",sc:"Ilmu komputer & teknik elektro, bisnis & ekonomi, komunikasi & desain kreatif, sosial politik, arsitektur, pengabdian masyarakat.",sn:"Berlaku Vol. 1 No. 1 (2021) s.d. Vol. 5 No. 2 (2025)",pub:"DRPM Universitas Budi Luhur",fr:"2×/tahun (Mei, November)",apc:"Normal: Rp200.000 proses + publikasi UBL Rp150.000 / eksternal Rp300.000. Fast track: UBL Rp500.000 / eksternal Rp750.000. Lebih dari 10 halaman: Rp50.000/halaman. Berlaku mulai edisi November 2026",bh:"Indonesia dan English",rv:"Fast track maksimal 2 pekan",ix:"Google Scholar, Portal Garuda, SINTA (tercantum di About)",doi:"10.36080",ct:"Masa berlaku akreditasi yang tercatat berakhir di Vol. 5 No. 2 (2025); periksa status terbaru di SINTA."},
+{n:"Jurnal Crystal: Publikasi Penelitian Kimia dan Terapannya",c:"Sains & Lingkungan",u:"https://ejournal.unibabwi.ac.id/index.php/Crystal",e:"2809-6509",sc:"Kimia murni dan terapan: kimia fisik, analitik, biokimia, organik, anorganik, lingkungan, kosmetik, pangan, material.",sn:"ID 9461, akreditasi berlaku sampai Vol. 9 No. 1 (2027)",pub:"Universitas PGRI Banyuwangi",fr:"2×/tahun (Maret, September)",apc:"Rp350.000 jika diterima; submission gratis",bh:"Indonesia dan English",ix:"DOAJ, SINTA, Google Scholar, Crossref",doi:"10.36526/jc",ct:"e-ISSN 2809-6509 sama persis dengan KRESNA, kemungkinan salah catat. Cek ulang di ISSN Portal."},
+{n:"International Journal of Built Environment and Scientific Research (IJBESR)",c:"Teknik",u:"https://jurnal.umj.ac.id/index.php/IJBESR/about",p:"2581-1347",e:"2580-2607",sc:"Desain arsitektur, building science, perencanaan kota, permukiman, arsitektur berkelanjutan, konservasi, tata ruang, real estate.",sn:"Terdaftar SINTA 4",pub:"Arsitektur, Fakultas Teknik Universitas Muhammadiyah Jakarta",fr:"2×/tahun (Juni, Desember)",apc:"Rp600.000 setelah diterima; hardcopy Rp175.000/eks + ongkir",bh:"English",ix:"Google Scholar, SINTA, GARUDA, BASE",doi:"10.24853/ijbesr"},
+{n:"Saintara: Jurnal Ilmiah Ilmu-Ilmu Maritim",c:"Teknik",u:"https://openjurnalsystem.amn.ac.id/index.php/saintara",p:"2528-6676",e:"2746-6353",sc:"Ilmu maritim: nautika, permesinan kapal, manajemen pelabuhan, ekonomi dan hukum maritim, pendidikan dan bahasa Inggris maritim.",sn:"ID 8635",pub:"LPPM Akademi Maritim Nusantara Cilacap",fr:"2×/tahun (Maret, September)",apc:"Rp300.000 (termasuk DOI dan 2× Turnitin); submission gratis",bh:"English dan Indonesia",ix:"SINTA, Garuda, Google Scholar, Crossref, EuroPub, OneSearch, Index Copernicus",doi:"10.52475"},
+{n:"Alamtana: Jurnal Pengabdian Masyarakat UNW Mataram",c:"Pengabdian",u:"https://ejournalunwmataram.org/index.php/jaltn",e:"2722-6751",sc:"Pemberdayaan masyarakat, inovasi sosial, pendidikan dan pelatihan, kearifan lokal, teknologi tepat guna.",sn:"ID 8709",pub:"LP2M Universitas Nahdlatul Wathan Mataram",fr:"3×/tahun (Mei, Agustus, Desember)",apc:"Rp350.000 (hosting, domain, DOI); tanpa biaya pengiriman",bh:"Indonesia atau Inggris",ix:"SINTA, Google Scholar, GARUDA, ROAD",doi:"10.51673/jaltn"},
+{n:"Djtechno: Jurnal Teknologi Informasi",c:"Informatika",u:"https://jurnal.dharmawangsa.ac.id/index.php/djtechno/id",p:"2776-8546",e:"2745-3758",sc:"Ilmu komputer, sistem informasi, software engineering, jaringan, keamanan, database, data mining, AI, machine learning, multimedia, robotika, HCI.",sn:"ID 11852",pub:"Teknologi Informasi, Universitas Dharmawangsa Medan",fr:"3×/tahun (Apr, Agu, Des)",apc:"Eksternal Rp500.000 (fast track Rp1.000.000); internal Rp350.000 (fast track Rp500.000)",bh:"Indonesia dan Inggris",rv:"Maksimal 4 minggu",ix:"SINTA, Garuda, Google Scholar",doi:"10.46576/djtechno"},
+{n:"JATI UNIK: Jurnal Ilmiah Teknik dan Manajemen Industri",c:"Teknik",u:"https://ojs.unik-kediri.ac.id/index.php/jatiunik/issue/view/11",p:"2597-6257",e:"2597-7946",sc:"Rekayasa desain & manufaktur, pengembangan produk, ergonomi & human factors, keselamatan.",sn:"ID 7862",pub:"Teknik Industri Universitas Kadiri",fr:"2×/tahun (April, Oktober)",apc:"Rp550.000; fast track Rp250.000 (maksimal 4 minggu)",bh:"English (pilihan OJS)",rv:"Sekitar 1 bulan",dl:"Naskah diterima paling lambat 1 bulan sebelum bulan terbit",ix:"SINTA, Garuda, Google Scholar",doi:"10.30737/jatiunik"},
+{n:"Komputika: Jurnal Sistem Komputer",c:"Informatika",u:"https://ojs.unikom.ac.id/index.php/komputika",p:"2252-9039",e:"2655-3198",sc:"Sistem komputer dan elektronika: IoT, machine learning, sistem kendali cerdas, jaringan komputer, embedded system.",sn:"ID 4999",pub:"Sistem Komputer, FTIK UNIKOM",fr:"2×/tahun (April, Oktober)",apc:"Rp1.000.000; fast track Rp2.000.000; cetak Rp100.000/eks",rv:"Double-blind; durasi tidak tercantum",ix:"SINTA, Garuda, Google Scholar",doi:"10.34010/komputika"},
+{n:"Photon: Journal of Natural Sciences and Technology",c:"Sains & Lingkungan",u:"https://ejurnal.umri.ac.id/index.php/photon",p:"2087-393X",e:"2579-5953",sc:"Fisika, biologi, kimia, lingkungan, komputasi, dan pemodelan (sebelumnya Photon: Jurnal Sain dan Kesehatan).",sn:"SINTA 4",pub:"LPPM Universitas Muhammadiyah Riau",fr:"2×/tahun (Mei, November)",apc:"Rp400.000 / USD 40 (berlaku sejak Nov 2023)",ix:"Google Scholar, GARUDA, Crossref, OneSearch, ROAD, BASE, PKP Index, SINTA",doi:"10.37859/photon"},
+{n:"Jurnal Agrotek Ummat",c:"Pertanian & Pangan",u:"https://journal.ummat.ac.id/index.php/agrotek",p:"2356-2234",e:"2614-6541",sc:"Pengolahan pangan, teknik pertanian dan biosistem, pertanian umum, mikrobiologi.",sn:"ID 5164",pub:"Universitas Muhammadiyah Mataram",fr:"4×/tahun (Jan, Apr, Jul, Okt)",apc:"Rp400.000; submission gratis",bh:"Indonesia (abstrak Indonesia & Inggris)",rv:"Double-blind, minimal 2 reviewer; iThenticate, similarity di atas 25% dikembalikan",ix:"Dimensions, ROAD, Crossref, Google Scholar, Neliti, GARUDA, SINTA, Moraref, OneSearch",doi:"10.31764",ct:"OJS lama tidak menerima submission lagi; sejak Vol. 13 No. 2 beralih ke OJS baru."},
+{n:"Jurnal Green Growth dan Manajemen Lingkungan (JGG)",c:"Sains & Lingkungan",u:"https://journal.unj.ac.id/unj/index.php/jgg/index",p:"2303-2332",e:"2597-8020",sc:"Manajemen dan pendidikan lingkungan, perilaku organisasi, kepemimpinan, pembangunan berkelanjutan, evaluasi kebijakan publik, sumber daya alam.",sn:"ID 2182",pub:"LPPM Universitas Negeri Jakarta",fr:"2×/tahun (Juli, Desember)",apc:"USD 52 / Rp850.000 setelah diterima; submission gratis",bh:"Indonesia",ix:"Google Scholar, GARUDA, ROAD, Crossref, OpenAlex",doi:"10.21009/jgg"},
+{n:"Voteteknika (Vocational Teknik Elektronika dan Informatika)",c:"Informatika",u:"https://ejournal.unp.ac.id/index.php/voteknika",p:"2302-3295",e:"2716-3989",sc:"Pendidikan vokasi, elektronika, telekomunikasi, robotik, sistem kendali, AI, IoT, sistem informasi, data mining, jaringan, keamanan, embedded system.",sn:"ID 9158",pub:"Teknik Elektronika Universitas Negeri Padang",fr:"4×/tahun (Mar, Jun, Sep, Des)",apc:"Rp400.000 setelah diterima; submission gratis",rv:"Double-blind peer review",ix:"SINTA, Google Scholar, Garuda",doi:"10.24036/voteteknika"},
+{n:"Hasanuddin Journal of Animal Science (HAJAS)",c:"Pertanian & Pangan",u:"https://journal.unhas.ac.id/index.php/hajas/index",p:"2621-9182",e:"2621-9190",sc:"Ilmu ternak tropis: pemuliaan, reproduksi, nutrisi, pakan, produk hewani, bioteknologi, kesejahteraan dan kesehatan hewan, sistem peternakan.",sn:"ID 8300",pub:"Fakultas Peternakan Universitas Hasanuddin",fr:"2×/tahun",apc:"USD 50 / Rp750.000 jika diterima; co-author luar negeri diskon 50%; first author luar negeri bebas biaya",ix:"Google Scholar, GARUDA, Dimensions, SINTA, EBSCO",doi:"10.20956/hajas"},
+{n:"Journal of Intelligent Computing and Health Informatics (JICHI)",c:"Informatika",u:"https://jurnal.unimus.ac.id/index.php/ICHI",p:"2715-6923",e:"2721-9186",sc:"AI, computational intelligence, biomedical engineering, informatika kesehatan, digital health, bioinformatika, sistem informasi rumah sakit, telehealth & IoT.",sn:"ID 9402",pub:"Informatika Universitas Muhammadiyah Semarang",fr:"2×/tahun (Maret, September)",apc:"Gratis untuk naskah masuk sebelum 31 Des 2026; mulai 1 Jan 2027 USD 200 jika diterima",bh:"English",rv:"14 hari ke keputusan pertama; 45 hari setelah review; 95 hari sampai penerimaan; double-blind, 2–3 reviewer",pt:"5 hari dari penerimaan ke terbit online",ix:"DOAJ, SINTA, Dimensions, Crossref, Google Scholar, GARUDA, ROAD, OneSearch, EZB",doi:"10.26714/jichi",ct:"Scopus: sedang dalam evaluasi, belum terindeks."}
+];
+const col={"Pengabdian":"#f0617d","Teknik":"#3d8bd9","Informatika":"#8b5fbf","Pertanian & Pangan":"#27a99b","Sains & Lingkungan":"#e8861c"};
+const $=id=>document.getElementById(id),V=x=>x||"—";let cat="Semua";
+// langit: awan & balon
+const sky=$("sky"),bc=["#f0617d","#ffd23f","#3d8bd9","#27a99b","#8b5fbf","#ff9a62","#7ed957"];
+for(let i=0;i<6;i++){const c=document.createElement("div");c.className="cl";const w=90+Math.random()*120;c.style.cssText=`width:${w}px;height:${w*.3}px;top:${Math.random()*70}%;animation-duration:${60+Math.random()*80}s;animation-delay:-${Math.random()*100}s`;sky.appendChild(c)}
+function balloon(){const b=document.createElement("div");b.className="bl";b.style.cssText=`left:${Math.random()*95}%;background:${bc[Math.random()*7|0]};animation-duration:${18+Math.random()*16}s;animation-delay:-${Math.random()*20}s;transform-origin:center`;b.onclick=()=>{b.classList.add("pop");setTimeout(()=>{b.remove();balloon()},300)};sky.appendChild(b)}
+for(let i=0;i<9;i++)balloon();
+// rumah bergerak mengikuti kursor
+document.addEventListener("pointermove",e=>{const x=(e.clientX/innerWidth-.5)*24,y=(e.clientY/innerHeight-.5)*14;$("house").style.transform=`translate(${x}px,${y}px) rotate(${x/6}deg)`});
+$("stats").innerHTML=`<div class="stat"><span>${D.length}</span>jurnal</div><div class="stat"><span>${D.length}</span>SINTA 4</div><div class="stat"><span>${new Set(D.map(d=>d.c)).size}</span>bidang</div>`;
+$("chips").innerHTML=["Semua",...Object.keys(col)].map(c=>`<button class="chip${c=="Semua"?" on":""}" data-c="${c}">${c}</button>`).join("");
+$("chips").onclick=e=>{const c=e.target.dataset.c;if(!c)return;cat=c;[...$("chips").children].forEach(b=>b.classList.toggle("on",b.dataset.c==c));render()};
+$("q").oninput=render;
+function render(){
+ const q=$("q").value.toLowerCase();
+ const L=D.map((d,i)=>({d,i})).filter(({d})=>(cat=="Semua"||d.c==cat)&&(d.n+d.sc+d.pub+d.c).toLowerCase().includes(q));
+ $("grid").innerHTML=L.length?L.map(({d,i})=>`<button class="card" data-i="${i}"><div class="top" style="background:${col[d.c]}"><span>${d.c}</span><span class="badge">SINTA 4</span></div><div class="bd"><h3>${d.n}</h3><p>${d.sc.length>115?d.sc.slice(0,113)+"…":d.sc}</p><div class="tags"><span class="tag">${d.fr.split(" (")[0]}</span><span class="tag">${d.apc.split(";")[0].split(" (")[0].split(" +")[0].slice(0,24)}</span></div></div></button>`).join(""):`<div class="empty">Balonnya belum ketemu. Coba kata kunci lain!</div>`;
+}
+$("grid").onclick=e=>{const b=e.target.closest(".card");if(b)openD(+b.dataset.i)};
+function openD(i){
+ const d=D[i],r=(k,v)=>v?`<div class="row"><dt>${k}</dt><dd>${v}</dd></div>`:"";
+ $("modal").innerHTML=`<div class="mh" style="background:${col[d.c]}"><span class="badge">SINTA 4</span><h2>${d.n}</h2><div>${d.c}</div><button class="x" aria-label="Tutup">✕</button></div><div class="mb"><dl style="margin:0">${r("p-ISSN",V(d.p))}${r("e-ISSN",d.e)}${r("Scope",d.sc)}${r("Profil SINTA",d.sn)}${r("Penerbit",d.pub)}${r("Frekuensi & bulan terbit",d.fr)}${r("Biaya (APC)",d.apc)}${r("Bahasa",V(d.bh))}${r("Review",V(d.rv))}${d.pt?r("Waktu publikasi",d.pt):""}${r("Deadline",V(d.dl))}${r("Pengindeks",d.ix)}${r("DOI prefix",d.doi)}${r("Scopus",d.ct&&d.ct.startsWith("Scopus")?"Sedang evaluasi, belum terindeks":"Belum terverifikasi")}${r("Status","Aktif, Open Access, peer-reviewed")}${r("Data diperbarui","30 September 2026")}</dl>${d.ct&&!d.ct.startsWith("Scopus")?`<div class="note"><b>Catatan data:</b> ${d.ct}</div>`:""}<div class="acts"><a class="btn" href="${d.u}" target="_blank" rel="noopener">Buka situs jurnal</a><a class="btn g" href="https://sinta.kemdiktisaintek.go.id/" target="_blank" rel="noopener">Cek di SINTA</a><button class="btn w" id="cl">Kembali ke daftar</button></div></div>`;
+ $("ov").classList.add("show");document.body.style.overflow="hidden";$("modal").querySelector(".x").focus();
+ $("cl").onclick=closeD;$("modal").querySelector(".x").onclick=closeD;
+}
+function closeD(){$("ov").classList.remove("show");document.body.style.overflow=""}
+$("ov").onclick=e=>{if(e.target.id=="ov")closeD()};
+document.onkeydown=e=>{if(e.key=="Escape")closeD()};
+render();
+</script>
+</body>
+</html>
